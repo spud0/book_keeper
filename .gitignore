@@ -1,4 +1,3 @@
 #Files to ignore
 Plan.txt
-Book.class
-BookList.class
+*.class # Ignores all of the .class files
