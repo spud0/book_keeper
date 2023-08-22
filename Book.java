@@ -5,9 +5,9 @@
 public class Book {
 
 	// All books have these pieces of data.
-	private String AuthorName; 
-	private String BookTitle; 
-	private long PageCount; 
+	public String AuthorName; 
+	public String BookTitle; 
+	public long PageCount; 
 	public long TimesRead; 
 	
 	// The Constructor of the class. 
@@ -17,7 +17,7 @@ public class Book {
 		this.PageCount = PageCount; 
 	}
 
-	// The Getter Methods. 
+	// The Getter methods.  
 	public String getAuthorName(){
 		return AuthorName; 
 	}
@@ -34,9 +34,21 @@ public class Book {
 		return TimesRead;
 	}
 	
-	// Setter method for the TimesRead. 
+	// The Setter methods. Use this to change any of the fields.
 	public void setTimesRead(long TimesRead){
 		this.TimesRead = TimesRead; 
+	}
+	
+	public void setAuthorName (String AuthorName){
+		this.AuthorName = AuthorName; 
+	}
+
+	public void setBookTitle(String BookTitle){
+		this.BookTitle = BookTitle; 
+	}
+
+	public void setPageCount(String PageCount){
+		this.PageCount = PageCount; 
 	}
 
 	// Main method. 
