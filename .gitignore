@@ -1,3 +1,6 @@
 #Files to ignore
 Plan.txt
-*.class # Ignores all of the .class files
+
+# Ignore all of the .class files
+*.class 
+src/*.class
