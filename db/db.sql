@@ -24,7 +24,13 @@ CREATE TABLE `Books`(
     `Book Title` LONGTEXT NOT NULL,
     `Page Count` BIGINT NOT NULL,
     `Times Read` BIGINT NOT NULL,
-    `ID` BIGINT NOT NULL
+    `ID` BIGINT NOT NULL,
+    
+    -- The lists that the books could be in
+    `Future Reading` TINYINT(1) NOT NULL, 
+    `Current Reading` TINYINT(1) NOT NULL,
+    `Finished Reading` TINYINT(1) NOT NULL,
+    `Wish List` TINYINT(1) NOT NULL
 );
 
 -- The User's ID field will reference 1 or more books. 
