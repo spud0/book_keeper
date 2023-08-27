@@ -3,7 +3,7 @@
 
 // Book datatype. Contains important fields about a book. 
 public class Book {
-
+	        
 	// All books have these pieces of data.
 	public String AuthorName; 
 	public String BookTitle; 
