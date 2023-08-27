@@ -44,25 +44,24 @@ public class DbSearcher {
 		}
   
   
-	public static ResultSet getUsersBooks (String UserName, int Id) { 
+	public static ResultSet getUsersBooks (String userName) { 
 		
 		// Use a WHERE Statement based on the Id and UserName. 
-		Statement idStmt = null;
-    Statement bookStmt = null; 
+    Statement stmt = null; 
 		ResultSet rs = null; 
+    int Id; 
 
 		try {
-
-      // Query for the ID for the proviced UserName. 
-			idStmt = conn.createStatement(); 
-      String idQuery = "SELECT `ID` FROM `Users` WHERE `User Name` = %s \n"; 
-      String fIdQuery = String.format(idQuery, UserName); 
-
+      
+      // Get the ID for the current user.  
+      ResultSet r = getUserInfo(userName); 
+      Id = getUserId(r); 
+      
       // Query for the books. 
 			String bookQuery = " SELECT `Author Name`, `Book Title`, `Page Count`, `Times Read` FROM `Books` WHERE `ID` = %s; \n"; 
-      String fQuery = String.format(bookQuery, Integer.toString(Id)); 
+      String fBookQuery = String.format(bookQuery, Integer.toString(Id)); 
 
-			if (idStmt.execute(fIdQuery) {
+			if (stmt.execute(fBookQuery) {
 				rs = stmt.getResultSet(); 
 				return rs; 
 			}
@@ -85,8 +84,14 @@ public class DbSearcher {
 				} catch (SQLException ex) { } // Do nothing. 
 				stmt = null; 
 			}
+      if (r != null){
+        try{
+          r.close(); 
+        } catch (SQLException ex) {} // Do nothing. 
+      }
 		}
 
+  // These functions extract information from the ResultSet. 
 	public static String getUserPass (ResultSet Rs) {
     return Rs.getString("Password"); 
 	}
@@ -94,6 +99,15 @@ public class DbSearcher {
   public static String getUserName(ResultSet Rs){
     return Rs.getString("User Name"); 
   }
+
+  public static String getUserEmail(ResultSet Rs) {
+    return Rs.getString("User Email"); 
+  }
+
+  public static int getUserId(Result Rs){
+    return Rs.getInt("ID"); 
+  }
+
 
   public static void main(String[] args){
 
