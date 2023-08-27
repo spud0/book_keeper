@@ -10,7 +10,7 @@ public class DbConnector {
 	public static String Username; 
 
 	// Database Connection Managers. 
-	public static void openDbConnection (String url, String user, String pass) {
+  public static void openDbConnection (String url, String user, String pass) {
 		System.out.println("Establishing a connection to the DB...");
 		try {
 			conn = DriverManager.getConnection(url, user, pass); 
