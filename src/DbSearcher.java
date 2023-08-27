@@ -12,13 +12,14 @@ public class DbSearcher {
 		
 		Statement stmt = null; 
 		ResultSet rs = null; 
+    Connection conn = null; 
 
 		try {
 			stmt = conn.createStatement(); 
 			String query = " SELECT 'User Email', 'User Name', Name, ID FROM Users WHERE 'User Name' = %s; "; 
 			String q = String.format(query, UserName); 
 
-			if (stmt.execute(q) {
+			if (stmt.execute(q)) {
 				rs = stmt.getResultSet(); 
 				return rs; 
 			}
@@ -42,26 +43,28 @@ public class DbSearcher {
 				} catch (SQLException ex) { } // Do nothing. 
 			}	
 		}
-  
+    return rs; 
+  }  
   
 	public static ResultSet getUsersBooks (String userName) { 
 		
 		// Use a WHERE Statement based on the Id and UserName. 
     Statement stmt = null; 
-		ResultSet rs = null; 
+		ResultSet rs = null;
+    ResultSet r = null; 
     int Id; 
 
 		try {
       
       // Get the ID for the current user.  
-      ResultSet r = getUserInfo(userName); 
+      r = getUserInfo(userName); 
       Id = getUserId(r); 
       
       // Query for the books. 
 			String bookQuery = " SELECT `Author Name`, `Book Title`, `Page Count`, `Times Read` FROM `Books` WHERE `ID` = %s; \n"; 
       String fBookQuery = String.format(bookQuery, Integer.toString(Id)); 
 
-			if (stmt.execute(fBookQuery) {
+			if (stmt.execute(fBookQuery)) {
 				rs = stmt.getResultSet(); 
 				return rs; 
 			}
@@ -90,22 +93,39 @@ public class DbSearcher {
         } catch (SQLException ex) {} // Do nothing. 
       }
 		}
-
+    return rs; 
+  }
   // These functions extract information from the ResultSet. 
 	public static String getUserPass (ResultSet Rs) {
-    return Rs.getString("Password"); 
+    try {
+      return Rs.getString("Password");
+    } catch(SQLException ex) {
+      return "NULL"; 
+    }
 	}
 
   public static String getUserName(ResultSet Rs){
-    return Rs.getString("User Name"); 
+    try{
+      return Rs.getString("User Name"); 
+    } catch(SQLException ex){
+      return "NULL"; 
+    }
   }
 
   public static String getUserEmail(ResultSet Rs) {
-    return Rs.getString("User Email"); 
+    try {
+      return Rs.getString("User Email"); 
+    } catch (SQLException ex){
+      return "NULL"; 
+    }
   }
 
-  public static int getUserId(Result Rs){
-    return Rs.getInt("ID"); 
+  public static int getUserId(ResultSet Rs){
+    try {
+      return Rs.getInt("ID"); 
+    } catch (SQLException ex) {
+      return -1; 
+    }
   }
 
 
