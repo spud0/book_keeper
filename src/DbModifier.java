@@ -1,63 +1,21 @@
 import java.sql.Connection; 
 import java.sql.DriverManager; 
 import java.sql.SQLException; 
+import java.sql.Statement;
+import java.sql.ResultSet;
 
 
 public class DbModifier {
 
-  // Both functions should be called after a connection is made
+  // Insert Functions. 
 
-  // Consider not using this function
-	public static String getUserPass (String UserName) {
-	
-	}
-
-
-
-	public static ResultSet getUsersBooks (String UserName, int Id) { 
-		
-		// Use a JOIN Statement 
-		Statement stmt = null;
-		ResultSet rs = null; 
-
-		try {
-			stmt = conn.createStatement(); 
-			String query = " SELECT `Author Name`, `Book Title`, `Page Count`, `Times Read` FROM `Books` WHERE `ID` = %s; "; 
-
-			if (stmt.execute(query) {
-				rs = stmt.getResultSet(); 
-				return rs; 
-			}
-		} catch (SQLException ex) {
-			// Print the error message.
-			System.out.println("SQLException: " + ex.getMessage());
-		    	System.out.println("SQLState: " + ex.getSQLState());
-		    	System.out.println("VendorError: " + ex.getErrorCode());
-
-		} finally {
-			if (rs != null) {
-				try {
-					rs.close(); 
-				} catch (SQLException ex) { } // Do nothing. 
-				rs = null; 
-			}
-			if (stmt != null) {
-				try {
-					stmt.close(); 
-				} catch (SQLException ex) { } // Do nothing. 
-				stmt = null; 
-			}
-		}
-	}
-	// Database Modifiers. Insert Functions. 
-
-	public static void insertUser (String UserName) {
+	public static void insertUser (String UserName, String Name, String Password, String Email) {
 
 		Statement stmt = null; 
-		"INSERT INTO Users () VALUES"; 
+	  String query =	"INSERT INTO `Users` (``, ``, ``, ``) \n VALUES ('', '', '', ''); "; 
 	}
 
-	public static void insertBooks (String UserName) {
+	public static void insertBooks (String UserName, int Id) {
 
 	}
 
@@ -68,7 +26,12 @@ public class DbModifier {
 		
 		// SELECT? 
   }
-  
+  public static void removeBooks(String UserName, int Id){
+
+
+  }
+
+
   public static void main(String[] args){
   }
 }
