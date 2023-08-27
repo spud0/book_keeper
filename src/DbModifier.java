@@ -5,17 +5,41 @@ import java.sql.Statement;
 import java.sql.ResultSet;
 
 
+// A class exclusively for inserting and removing data from the DB. 
 public class DbModifier {
 
   // Insert Functions. 
 
-	public static void insertUser (String UserName, String Name, String Password, String Email) {
+	public static boolean insertUser (String UserName, String Name, String Password, String Email) {
 
 		Statement stmt = null; 
-	  String query =	"INSERT INTO `Users` (``, ``, ``, ``) \n VALUES ('', '', '', ''); "; 
-	}
+    try {
+      String query =	"INSERT INTO `Users` (`User Name`, `Name`, `Password`, `Email`) \n VALUES ('%s', '%s', '%s', '%s'); "; 
+      String fQuery = String.format(query, UserName, Name, Password, Email); 
 
-	public static void insertBooks (String UserName, int Id) {
+      if (stmt.execute(fQuery)){
+          return true; 
+      }
+	  }  catch (SQLException ex) {
+			// Print the error message.
+			System.out.println("SQLException: " + ex.getMessage());
+		 	System.out.println("SQLState: " + ex.getSQLState());
+		  System.out.println("VendorError: " + ex.getErrorCode());
+      
+
+		} finally {
+			if (stmt != null) {
+				try {
+					stmt.close(); 
+				} catch (SQLException ex) { } // Do nothing. 
+			}	
+    }
+
+    // Return after resource is handled and Statment isn't executed. 
+    return false; 
+  }
+
+	public static boolean insertBooks (String UserName, int Id) {
 
 	}
 
