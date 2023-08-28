@@ -8,14 +8,13 @@ import java.sql.ResultSet;
 public class DbSearcher {
 
   // Getter methods. 
-	public static ResultSet getUserInfo (String UserName) {
+	public static ResultSet getUserInfo (String UserName, Connection c) {
 		
 		Statement stmt = null; 
 		ResultSet rs = null; 
-    Connection conn = null; 
 
 		try {
-			stmt = conn.createStatement(); 
+			stmt = c.createStatement(); 
 			String query = " SELECT 'User Email', 'User Name', Name, ID FROM Users WHERE 'User Name' = %s; "; 
 			String q = String.format(query, UserName); 
 
@@ -46,7 +45,7 @@ public class DbSearcher {
     return rs; 
   }  
   
-	public static ResultSet getUsersBooks (String userName) { 
+	public static ResultSet getUsersBooks (String userName, Connection c) { 
 		
 		// Use a WHERE Statement based on the Id and UserName. 
     Statement stmt = null; 
@@ -57,7 +56,7 @@ public class DbSearcher {
 		try {
       
       // Get the ID for the current user.  
-      r = getUserInfo(userName); 
+      r = getUserInfo(userName, c); 
       Id = getUserId(r); 
       
       // Query for the books. 
@@ -131,7 +130,32 @@ public class DbSearcher {
 
   public static void main(String[] args){
 
+    DbConnector d = new DbConnector();
+    DbSearcher dS = new DbSearcher(); 
+
+		String url = "jdbc:mysql://localhost:3306/UserBooks";
+		String user = "root"; 
+		String pass = ""; 
+
+	  d.openDbConnection(url, user, pass); 
+
+    ResultSet r = null; 
+    ResultSet rs = null; 
+
+    r = dS.getUserInfo("shales_nuts", d.conn);
+    rs = dS.getUserInfo("shales_balls", d.conn); 
+
+
+    System.out.println("Uname(shales_nuts): " + getUserName(r)); 
+    System.out.println("Email:" + getUserEmail(r)); 
+
+    System.out.println("Uname(shales_balls)" + getUserName(rs)); 
+    System.out.println("Email: " + getUserEmail(rs)); 
+    
+   d.closeDbConnection();  
+
   }
+
 
 
 }
