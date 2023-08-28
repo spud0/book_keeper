@@ -4,10 +4,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.ResultSet;
 
-public class DbConnector {	
+public class DbManager {	
 
   private static Connection conn;
-	public static String Username; 
+  public static String Username; 
 
 	// Database Connection Managers. 
   public static void openDbConnection (String url, String user, String pass) {
@@ -44,7 +44,7 @@ public class DbConnector {
 		} catch (Exception x){
 			System.err.println(x.getMessage()); 
 		}
-    
+  /** 
     DbConnector d = new DbConnector(); 
 
 		String url = "jdbc:mysql://localhost:3306/UserBooks";
@@ -105,5 +105,5 @@ public class DbConnector {
 		}
 	
 		d.closeDbConnection(); 
-  }
-}
+  **/ } 
+} 
