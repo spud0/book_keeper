@@ -26,7 +26,7 @@ create table user_books (
     owner_id bigint not null,
     book_id bigint not null,
     times_read int default 0,
-    rating int check (rating > 0 and rating < 5),
+    rating int check (rating >= 0 and rating <= 5),
     notes text,
     added_at timestamp default current_timestamp not null,
     foreign key (owner_id) references users(id),
@@ -37,7 +37,7 @@ create table user_books (
 create table comments (
     id bigint not null auto_increment primary key,
     review longtext not null,
-    rating int check (rating > 0 and rating < 6),
+    rating int check (rating >= 0 and rating <= 5),
     owner_id bigint not null,
     book_id bigint not null,
     created_at timestamp default current_timestamp not null,
