@@ -5,27 +5,28 @@ import lombok.Setter;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
 
-// import org.bson.types.ObjectId;
-
 import jakarta.persistence.*;
-import java.util.List;
+import java.util.Date;
 
-@Entity
-@Table(name = "books")
 @Getter
 @Setter
+@Entity
+@Table(name = "books")
 @AllArgsConstructor
 @NoArgsConstructor
 public class Book {
 
-	private String title;
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Long id;	
+
+	private String bookTitle;
 	private String authorName;
 	private String publisherName;
-	private String descriptionBlurb;	
-	private String ISBN;
+	private String blurb;	
+	private String isbn;
 
-	private long id;	
-	private long timesRead;
-	private long pageCount;
+	private int pageCount;
+	private Date firstPublished;
 
 }
