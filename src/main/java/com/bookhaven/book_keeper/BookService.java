@@ -18,24 +18,17 @@ public class BookService {
 	
 	// All books written by an Author
 	public List <Book> allBooksForAuthor (String authorName) {
-		List<Book> books = bookRepository.findByAuthorName(authorName);
-	
-		for (int i = 0; i < books.size(); i++) {
-			System.out.println(books.get(i));	
-		}
-
-		return books; 
+		return bookRepository.findByAuthorName(authorName);
 	}	
 
 	// All books from a publisher
  	public List<Book> allBooksForPublisher(String publisherName) {
-		List<Book> books = bookRepository.findByPublisherName(publisherName);
+		return bookRepository.findByPublisherName(publisherName);
+	}
 
-		for (int i = 0; i < books.size(); i++) {
-			System.out.println(books.get(i));	
-		}
-
-		return books; 
+	// One book based on ISBN	
+	public Book bookFromIsbnCode (String isbnCode) {
+		return bookRepository.findByIsbn(isbnCode);
 	}
 
 }
