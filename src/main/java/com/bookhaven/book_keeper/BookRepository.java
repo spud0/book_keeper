@@ -15,5 +15,13 @@ public interface BookRepository extends JpaRepository<Book, Long> {
 	// All books for a particular publisher
  	public List<Book> findByPublisherName(String publisherName);
 
+	// One book for ISBN code
+	public Book findByIsbn(String Isbn);
+
+	// One book for title, might have to change
+	public Book findByBookTitle(String bookTitle);
+
+	// All books with a specific page count
+	public List<Book> findByPageCount (int pageCt);
 
 }
