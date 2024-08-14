@@ -22,3 +22,9 @@ Not like much. Yet.
 - https://www.w3schools.com/java/default.asp 
 - https://spring.io/guides/tutorials/rest
 - https://docs.spring.io/spring-security/reference/features/authentication/index.html
+
+- https://stackoverflow.blog/2020/03/02/best-practices-for-rest-api-design/
+- https://www.freecodecamp.org/news/rest-vs-graphql-apis/#how-graphql-apis-work
+- https://www.freecodecamp.org/news/stateful-vs-stateless-architectures-explained/
+- https://www.freecodecamp.org/news/build-consume-and-document-a-rest-api/#how-to-consume-a-rest-api-on-a-front-end-react-app
+
